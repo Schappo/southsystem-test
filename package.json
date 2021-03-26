@@ -6,6 +6,7 @@
   "author": "Felipe Schappo",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.36",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -31,6 +32,8 @@
   },
   "dependencies": {
     "@types/mongoose": "^5.10.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "mongoose": "^5.10.18"
   }
 }

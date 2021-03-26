@@ -6,6 +6,7 @@
   "author": "Felipe Schappo",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^26.0.22",
     "@types/node": "^14.14.36",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",

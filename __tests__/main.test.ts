@@ -1,8 +1,10 @@
-import { User } from '@controllers/index'
+import request from 'supertest'
+import app from '@/server'
 
 describe('Application', () => {
-  it('should ruinnig on port 8080', () => {
-    const user = new User()
-    expect(true).toBe(true)
+  it('should ruinnig on port 8080', async () => {
+    const response = await request(app).get('/').send()
+    expect(response.status).toBe(200)
+    expect(response.text).toBe('OK')
   })
 })

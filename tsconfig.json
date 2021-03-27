@@ -12,8 +12,16 @@
     "removeComments": true,
     "strict": false,
     "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
     "paths": {
-      "@controllers/*": ["./src/controllers/*"]
+      "@/*":["./src/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@models/*": ["./src/models/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@config/*": ["./src/config/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,

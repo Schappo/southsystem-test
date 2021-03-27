@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { compilerOptions } = require('./tsconfig.json')
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { defaults: tsjPreset } = require('ts-jest/presets')
 
 module.exports = {
   bail: true,
   clearMocks: true,
-  preset: 'ts-jest',
+  preset: '@shelf/jest-mongodb',
   testEnvironment: 'node',
   testMatch: [
     '**/__tests__/**/*.test.ts'
   ],
   moduleDirectories: ['node_modules', '<rootDir>/src'],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' })
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/src/$1',
+    '@controllers/(.*)': '<rootDir>/src/controllers/$1',
+    '\\.scss$': 'identity-obj-proxy'
+  },
+  transform: tsjPreset.transform
 }

@@ -5,7 +5,7 @@ export interface IConfigMapping {
 }
 
 export interface IDatabaseConfig extends IConfigMapping {
-  uri: string;
+  dbUri: string;
   options: {
     useNewUrlParser: boolean;
     useCreateIndex: boolean;

@@ -6,4 +6,5 @@ export interface IBook {
   ibsn: number
   category: string
   year: number
+  rented: boolean
 }

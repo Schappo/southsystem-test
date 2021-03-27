@@ -10,7 +10,7 @@ const {
 const DB_URI = `mongodb://localhost:${DB_PORT}/${DB_NAME}?authSource=admin`
 
 export const schema: Joi.ObjectSchema = Joi.object().keys({
-  uri: Joi.string().required(),
+  dbUri: Joi.string().required(),
   options: Joi.object({
     useNewUrlParser: Joi.boolean().required(),
     useCreateIndex: Joi.boolean().required(),
@@ -20,7 +20,7 @@ export const schema: Joi.ObjectSchema = Joi.object().keys({
 })
 
 export const config: IDatabaseConfig = {
-  uri: DB_URI,
+  dbUri: DB_URI,
   options: {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -28,14 +28,29 @@ export const config: IDatabaseConfig = {
     useFindAndModify: false
   }
 }
-const { error, value: validatedDBConfig }: Joi.ValidationResult = schema.validate(config)
 
-if (error) {
-  throw new Error(`Invalid Config Database! message: ${error.message}`)
-}
+export const connectDB = async (dbHostname: string, dbPort: string, dbName: string): Promise<typeof mongoose> => {
+  const dbUri = `mongodb://${dbHostname}:${dbPort}/${dbName}?authSource=admin`
 
-mongoose.connect(validatedDBConfig.uri, validatedDBConfig.options)
+  const databaseConfig = {
+    dbUri,
+    options: {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    }
+  }
 
-export const connectDB = (): void => {
-  mongoose.connect(validatedDBConfig.uri, validatedDBConfig.options)
+  const { error, value: validatedDBConfig }: Joi.ValidationResult = schema.validate(databaseConfig)
+
+  if (error) {
+    throw new Error(`Invalid Config Database! message: ${error.message}`)
+  }
+
+  try {
+    return await mongoose.connect(validatedDBConfig.dbUri, validatedDBConfig.options)
+  } catch (error) {
+    throw new Error('Some get wrong when try to connect MongoDB')
+  }
 }

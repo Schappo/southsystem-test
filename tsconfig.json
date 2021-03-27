@@ -19,6 +19,7 @@
     "paths": {
       "@/*":["./src/*"],
       "@controllers/*": ["./src/controllers/*"],
+      "@services/*": ["./src/services/*"],
       "@models/*": ["./src/models/*"],
       "@shared/*": ["./src/shared/*"],
       "@config/*": ["./src/config/*"],

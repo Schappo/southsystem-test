@@ -8,6 +8,7 @@ const {
   DB_PORT,
   DB_NAME
 } = process.env
+
 const DB_URI = `mongodb://localhost:${DB_PORT}/${DB_NAME}?authSource=admin`
 
 describe('insert', () => {

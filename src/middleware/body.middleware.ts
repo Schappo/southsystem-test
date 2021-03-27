@@ -4,7 +4,6 @@ import { Schema, ValidationResult } from 'joi'
 export const bodyValidateMiddleware = (dto: Schema) => {
   return function (req: Request, res: Response, next: NextFunction): Response {
     const { error }: ValidationResult = dto.validate(req.body, { abortEarly: false })
-    console.log(error)
     if (error) {
       const { details } = error
       const message = {}

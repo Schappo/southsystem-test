@@ -1,4 +1,5 @@
 import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'
+import { RoleEnum } from '../enums'
 import { IUser } from '../interfaces'
 
 @modelOptions({
@@ -12,7 +13,7 @@ class UserModel implements IUser {
   @prop({ required: true, trim: true, maxlength: 100 })
   phone: string
 
-  @prop({ required: true, trim: true, maxlength: 100 })
+  @prop({ required: true, trim: true, maxlength: 100, unique: true })
   email: string
 
   @prop({ required: true, trim: true, maxlength: 100 })
@@ -23,6 +24,9 @@ class UserModel implements IUser {
 
   @prop({ required: false, default: [] })
   bookmarks: string[] = []
+
+  @prop({ required: false, default: RoleEnum.READER, enum: RoleEnum, type: String })
+  role = RoleEnum.READER
 }
 
 export default getModelForClass(UserModel)

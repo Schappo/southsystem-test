@@ -11,6 +11,10 @@ const findAll = async (): Promise<IUser[]> => {
   return await userRepository.findAll()
 }
 
+const findByEmail = async (email: string): Promise<IUser> => {
+  return await userRepository.findByEmail(email)
+}
+
 const findById = async (id: MongoId): Promise<NullAble<IUser>> => {
   return await userRepository.findById(id)
 }
@@ -36,6 +40,7 @@ const remove = async (id: MongoId): Promise<boolean> => {
 
 export default {
   findById,
+  findByEmail,
   findAll,
   update,
   create,

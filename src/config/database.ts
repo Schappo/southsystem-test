@@ -1,15 +1,13 @@
 import * as Joi from 'joi'
-import { DatabaseConfig } from '../shared/interfaces'
+import { IDatabaseConfig } from '../shared/interfaces'
 import mongoose from 'mongoose'
 
 const {
-  DB_PASSWORD,
-  DB_USENAME,
   DB_PORT,
   DB_NAME
 } = process.env
 
-const DB_URI = `mongodb://${DB_USENAME}:${DB_PASSWORD}@localhost:${DB_PORT}/${DB_NAME}?authSource=admin`
+const DB_URI = `mongodb://localhost:${DB_PORT}/${DB_NAME}?authSource=admin`
 
 export const schema: Joi.ObjectSchema = Joi.object().keys({
   uri: Joi.string().required(),
@@ -21,7 +19,7 @@ export const schema: Joi.ObjectSchema = Joi.object().keys({
   })
 })
 
-export const config: DatabaseConfig = {
+export const config: IDatabaseConfig = {
   uri: DB_URI,
   options: {
     useNewUrlParser: true,

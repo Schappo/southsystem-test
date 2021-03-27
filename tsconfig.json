@@ -21,7 +21,8 @@
       "@controllers/*": ["./src/controllers/*"],
       "@models/*": ["./src/models/*"],
       "@shared/*": ["./src/shared/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@types/*": ["./src/@types/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,

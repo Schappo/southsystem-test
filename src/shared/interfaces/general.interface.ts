@@ -1,11 +1,10 @@
-import { boolean } from 'joi'
 import { Types } from 'mongoose'
 
-export interface ConfigMapping {
+export interface IConfigMapping {
   [key: string]: unknown;
 }
 
-export interface DatabaseConfig extends ConfigMapping {
+export interface IDatabaseConfig extends IConfigMapping {
   uri: string;
   options: {
     useNewUrlParser: boolean;
@@ -15,10 +14,10 @@ export interface DatabaseConfig extends ConfigMapping {
   }
 }
 
-export interface HashMap {
+export interface IHashMap {
   [key: string]: unknown;
 }
 
-export interface MongoDocument {
+export interface IMongoDocument {
   _id?: Types.ObjectId;
 }

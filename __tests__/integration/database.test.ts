@@ -9,7 +9,6 @@ const {
   DB_NAME
 } = process.env
 const DB_URI = `mongodb://localhost:${DB_PORT}/${DB_NAME}?authSource=admin`
-console.log(DB_URI)
 
 describe('insert', () => {
   let connection

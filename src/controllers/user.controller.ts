@@ -9,7 +9,7 @@ const findAll = async (req: Request, res: Response): Promise<Response> => {
     return res.status(200).json(response)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ data: 'Internal Server Error!' })
+    res.status(500).json('Internal Server Error!')
   }
 }
 
@@ -20,11 +20,11 @@ const findById = async (req: Request, res: Response): Promise<Response> => {
     if (response) {
       return res.status(200).json(response)
     } else {
-      return res.status(404).json({ data: 'Book not Found' })
+      return res.status(404).json('Book not Found')
     }
   } catch (error) {
     console.error(error)
-    res.status(500).json({ data: 'Internal Server Error!' })
+    res.status(500).json('Internal Server Error!')
   }
 }
 
@@ -36,11 +36,11 @@ const update = async (req: Request, res: Response): Promise<Response> => {
     if (response) {
       return res.status(200).json(response)
     } else {
-      return res.status(404).json({ data: 'Book not Found' })
+      return res.status(404).json('Book not Found')
     }
   } catch (error) {
     console.error(error)
-    res.status(500).json({ data: 'Internal Server Error!' })
+    res.status(500).json('Internal Server Error!')
   }
 }
 
@@ -51,7 +51,7 @@ const create = async (req: Request, res: Response): Promise<Response> => {
     return res.status(201).json(response)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ data: 'Internal Server Error!' })
+    res.status(500).json('Internal Server Error!')
   }
 }
 
@@ -62,7 +62,7 @@ const remove = async (req: Request, res: Response): Promise<Response> => {
     if (response) {
       return res.status(200).json(response)
     } else {
-      return res.status(404).json({ data: 'Book not Found' })
+      return res.status(404).json('User not Found')
     }
   } catch (error) {
     console.error(error)

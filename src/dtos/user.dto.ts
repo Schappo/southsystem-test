@@ -18,17 +18,7 @@ const updateUserSchema = Joi.object({
   bookmark: Joi.array().items(Joi.string())
 })
 
-const findByIdUserSchema = Joi.object({
-  id: Joi.string().required()
-})
-
-const deleteUserSchema = Joi.object({
-  id: Joi.string().required()
-})
-
 export default {
   createUserSchema,
-  updateUserSchema,
-  findByIdUserSchema,
-  deleteUserSchema
+  updateUserSchema
 }

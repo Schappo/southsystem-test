@@ -18,7 +18,7 @@ const singIn = async (email: string, pass: string): Promise<ISingIn> => {
 
 const generateToken = (user) => {
   const { _id, role } = user
-  return jwt.sign({ _id, role }, process.env.APP_SECRET)
+  return jwt.sign({ _id, role }, process.env.APP_SECRET, { expiresIn: 10 })
 }
 
 const checkPassword = (passToValidate, userPassword) => {

@@ -7,9 +7,10 @@ import { getJWTUser, getTokenFromRequest } from '../shared/helpers'
 export const authMiddleware = (roles: RoleEnum[]): any => {
   return async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const authHeader = req.headers.authorization
-    const token = getTokenFromRequest(req)
 
     if (!authHeader) return res.status(401).json('Token not provided!')
+
+    const token = getTokenFromRequest(req)
 
     const decodedJWT = await promisify(jwt.verify)(token, process.env.APP_SECRET)
     const isAuthorized = roles.some(role => role === decodedJWT.role || decodedJWT.role === RoleEnum.ADMIN)

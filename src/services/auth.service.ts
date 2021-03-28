@@ -13,6 +13,8 @@ const singIn = async (email: string, pass: string): Promise<ISingIn> => {
         token: await generateToken(user)
       }
     }
+  } else {
+    return { user: null, token: null }
   }
 }
 

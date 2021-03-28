@@ -6,7 +6,9 @@ const createUserSchema = Joi.object({
   phone: Joi.string().required(),
   email: Joi.string().required(),
   password: Joi.string().required(),
-  bookmarks: Joi.array().items(Joi.string())
+  bookmarks: Joi.array().items(Joi.string()),
+  rentedBooks: Joi.array().items(Joi.string())
+
 })
 
 const updateUserSchema = Joi.object({
@@ -15,7 +17,8 @@ const updateUserSchema = Joi.object({
   phone: Joi.string(),
   email: Joi.string(),
   password: Joi.string(),
-  bookmark: Joi.array().items(Joi.string())
+  bookmarks: Joi.array().items(Joi.string()),
+  rentedBooks: Joi.array().items(Joi.string())
 })
 
 export default {

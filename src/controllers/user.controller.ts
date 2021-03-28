@@ -2,11 +2,13 @@ import { Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
 import userService from '@services/user.service'
 import { IUser } from '@shared/interfaces'
-import { getJWTUser, getTokenFromRequest } from '../shared/helpers'
+import queryString from 'query-string'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
+  const [, query] = req.url.split('?')
+  const queryObject = queryString.parse(query)
   try {
-    const response = await userService.findAll(req.query)
+    const response = await userService.findAll(queryObject)
     return res.status(200).json(response)
   } catch (error) {
     console.error(error)
@@ -94,6 +96,18 @@ const getRentedBooksList = async (req: Request, res: Response): Promise<Response
   }
 }
 
+const rentBook = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params
+  const { bookId } = req.body
+  try {
+    const response = await userService.rentBook(new ObjectId(id), bookId)
+    return res.status(200).json(response)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Something got wrong!')
+  }
+}
+
 export default {
   findAll,
   findById,
@@ -101,5 +115,6 @@ export default {
   update,
   remove,
   getBookMarkList,
-  getRentedBooksList
+  getRentedBooksList,
+  rentBook
 }

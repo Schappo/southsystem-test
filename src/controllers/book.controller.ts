@@ -2,10 +2,13 @@ import { Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
 import bookService from '../services/book.service'
 import { IBook } from '../shared/interfaces/book.interface'
+import queryString from 'query-string'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
+  const [, query] = req.url.split('?')
+  const queryObject = queryString.parse(query, { parseNumbers: true, parseBooleans: true })
   try {
-    const response = await bookService.findAll(req.query)
+    const response = await bookService.findAll(queryObject)
     return res.status(200).json(response)
   } catch (error) {
     console.error(error)

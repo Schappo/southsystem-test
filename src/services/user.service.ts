@@ -64,6 +64,16 @@ const getRentedBooksList = async (id: MongoId): Promise<IBook[]> => {
   return result
 }
 
+const rentBook = async (id: MongoId, bookId: MongoId): Promise<IUser> => {
+  const user = await findById(id)
+  const rentedBooks = user.rentedBooks
+  rentedBooks.push(bookId)
+
+  await bookService.update(bookId, { rented: true })
+
+  return await update(id, { rentedBooks })
+}
+
 export default {
   findById,
   findByEmail,
@@ -72,5 +82,6 @@ export default {
   create,
   remove,
   getBookMarkList,
-  getRentedBooksList
+  getRentedBooksList,
+  rentBook
 }

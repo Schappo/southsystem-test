@@ -2,7 +2,7 @@ import express from 'express'
 import bookController from '../controllers/book.controller'
 import bookDto from '../dtos/book.dto'
 import { authMiddleware } from '../middleware/auth.middleware'
-import { bodyValidateMiddleware } from '../middleware/body.middleware'
+import { bodyValidateMiddleware } from '../middleware/request.middleware'
 import { RoleEnum } from '../shared/enums'
 const router = express.Router()
 

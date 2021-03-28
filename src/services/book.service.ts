@@ -5,8 +5,7 @@ import { MongoId, NullAble } from '../@types'
 
 const bookrepository = new BookRepository(bookModel)
 
-const findAll = async (query: any): Promise<IBook[]> => {
-  console.log(query)
+const findAll = async (query: Partial<IBook>): Promise<IBook[]> => {
   return await bookrepository.findAll(query)
 }
 

@@ -25,12 +25,15 @@
       "@config/*": ["./src/config/*"],
       "@types/*": ["./src/@types/*"]
     },
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+  "esModuleInterop": true,
+  "resolveJsonModule": true,
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "skipLibCheck": true,
+  "forceConsistentCasingInFileNames": true,
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
   },
   "include": ["src/**/*", "__tests__*/*"]
 }

@@ -7,8 +7,8 @@ import bcrypt from 'bcrypt'
 const { BCRYPT_SALT } = process.env
 const userRepository = new UerRepository(userModel)
 
-const findAll = async (): Promise<IUser[]> => {
-  return await userRepository.findAll()
+const findAll = async (query: any): Promise<IUser[]> => {
+  return await userRepository.findAll(query)
 }
 
 const findByEmail = async (email: string): Promise<IUser> => {

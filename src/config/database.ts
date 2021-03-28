@@ -51,6 +51,6 @@ export const connectDB = async (dbHostname: string, dbPort: string, dbName: stri
   try {
     return await mongoose.connect(validatedDBConfig.dbUri, validatedDBConfig.options)
   } catch (error) {
-    throw new Error('Some get wrong when try to connect MongoDB')
+    throw new Error('Something wrong when try to connect MongoDB')
   }
 }

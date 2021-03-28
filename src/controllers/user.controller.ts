@@ -5,7 +5,7 @@ import { IUser } from '@shared/interfaces'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const response = await userService.findAll()
+    const response = await userService.findAll(req.query)
     return res.status(200).json(response)
   } catch (error) {
     console.error(error)
@@ -30,9 +30,10 @@ const findById = async (req: Request, res: Response): Promise<Response> => {
 
 const update = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.params
-  const data: IUser = req.body
+  const user: IUser = req.body
+
   try {
-    const response = await userService.update(new ObjectId(id), data)
+    const response = await userService.update(new ObjectId(id), user)
     if (response) {
       return res.status(200).json(response)
     } else {

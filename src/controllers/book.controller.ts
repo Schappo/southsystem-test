@@ -5,7 +5,7 @@ import { IBook } from '../shared/interfaces/book.interface'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const response = await bookService.findAll()
+    const response = await bookService.findAll(req.query)
     return res.status(200).json(response)
   } catch (error) {
     console.error(error)

@@ -11,3 +11,8 @@ export interface IUser {
   bookmarks: string[]
   role: RoleEnum
 }
+
+export interface IJwtUser {
+  _id: string
+  role: RoleEnum
+}

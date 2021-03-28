@@ -1,7 +1,6 @@
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { MongoId, NullAble } from '../../@types'
 import { omit } from 'lodash'
-
 class BaseRepository<T> {
   protected model: ModelType<T>;
 
@@ -9,8 +8,8 @@ class BaseRepository<T> {
     this.model = model
   }
 
-  async findAll (): Promise<T[]> {
-    return await this.model.find().exec()
+  async findAll (query = {}): Promise<T[]> {
+    return await this.model.find(query).exec()
   }
 
   async findById (id: MongoId): Promise<NullAble<T>> {

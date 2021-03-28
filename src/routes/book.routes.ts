@@ -7,15 +7,29 @@ import { RoleEnum } from '../shared/enums'
 const router = express.Router()
 
 router.route('/')
-  .post(bodyValidateMiddleware(bookDto.createBookSchema), (req, res) => bookController.create(req, res))
-  .get((req, res) => bookController.findAll(req, res))
+  // Create
+  .post([
+    authMiddleware([RoleEnum.LIBRARY_OP]),
+    bodyValidateMiddleware(bookDto.createBookSchema)
+  ], (req, res) => bookController.create(req, res))
+  // Find All
+  .get([
+    authMiddleware([RoleEnum.LIBRARY_OP, RoleEnum.READER])
+  ], (req, res) => bookController.findAll(req, res))
 
 router.route('/:id')
-  .get((req, res) => bookController.findById(req, res))
+  // Find One
+  .get([
+    authMiddleware([RoleEnum.LIBRARY_OP, RoleEnum.READER])
+  ], (req, res) => bookController.findById(req, res))
+  // Update
   .put([
-    authMiddleware(RoleEnum.LIBRARY_OP),
+    authMiddleware([RoleEnum.LIBRARY_OP]),
     bodyValidateMiddleware(bookDto.updateBookSchema)
   ], (req, res) => bookController.update(req, res))
-  .delete((req, res) => bookController.remove(req, res))
+  // Delete
+  .delete([
+    authMiddleware([RoleEnum.LIBRARY_OP])
+  ], (req, res) => bookController.remove(req, res))
 
 export default router

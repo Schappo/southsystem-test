@@ -1,28 +1,35 @@
 import { Types } from 'mongoose'
+import { RoleEnum } from '../enums'
 import { IUser } from './user.interface'
 
 export interface IConfigMapping {
-  [key: string]: unknown;
+  [key: string]: unknown
 }
 
 export interface ISingIn {
-  user: IUser,
+  user: IUser
   token: string
 }
 export interface IDatabaseConfig extends IConfigMapping {
-  dbUri: string;
+  dbUri: string
   options: {
-    useNewUrlParser: boolean;
-    useCreateIndex: boolean;
-    useUnifiedTopology: boolean;
-    useFindAndModify: boolean;
+    useNewUrlParser: boolean
+    useCreateIndex: boolean
+    useUnifiedTopology: boolean
+    useFindAndModify: boolean
   }
 }
 
 export interface IHashMap {
-  [key: string]: unknown;
+  [key: string]: unknown
 }
 
 export interface IMongoDocument {
   _id?: Types.ObjectId;
+}
+
+export interface IDecodedJWT {
+  _id: string
+  role: RoleEnum
+  iat: number
 }

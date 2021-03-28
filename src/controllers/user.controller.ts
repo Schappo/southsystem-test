@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
 import userService from '@services/user.service'
 import { IUser } from '@shared/interfaces'
+import { getJWTUser, getTokenFromRequest } from '../shared/helpers'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -70,10 +71,35 @@ const remove = async (req: Request, res: Response): Promise<Response> => {
   }
 }
 
+const getBookMarkList = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params
+  try {
+    const response = await userService.getBookMarkList(new ObjectId(id))
+
+    return res.send(response)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Something got wrong!')
+  }
+}
+
+const getRentedBooksList = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params
+  try {
+    const response = await userService.getRentedBooksList(new ObjectId(id))
+    return res.status(200).json(response)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Something got wrong!')
+  }
+}
+
 export default {
   findAll,
   findById,
   create,
   update,
-  remove
+  remove,
+  getBookMarkList,
+  getRentedBooksList
 }

@@ -8,7 +8,8 @@ export interface IUser {
   phone: string
   email: string
   password: string
-  bookmarks: string[]
+  bookmarks: MongoId[]
+  rentedBooks: MongoId[]
   role: RoleEnum
 }
 

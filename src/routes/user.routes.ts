@@ -11,31 +11,43 @@ router.route('/')
     authReaderMiddleware,
     authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP]),
     bodyValidateMiddleware(userDto.createUserSchema)
-  ], (req, res) => userController.create(req, res))
+  ], userController.create)
   // Find All Users
   .get([
     authReaderMiddleware,
     authMiddleware([RoleEnum.LIBRARY_OP])
-  ], (req, res) => userController.findAll(req, res))
+  ], userController.findAll)
 router.route('/:id')
 // Find User By Id
   .get([
     authReaderMiddleware,
     authMiddleware([RoleEnum.LIBRARY_OP])
-  ], (req, res) => userController.findById(req, res)
+  ], userController.findById
   )
   // Update User
   .put([
     authReaderMiddleware,
     authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP]),
     bodyValidateMiddleware(userDto.updateUserSchema)
-  ], (req, res) => userController.update(req, res)
+  ], userController.update
   )
   // Delete User
   .delete([
     authReaderMiddleware,
     authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP]),
     bodyValidateMiddleware(userDto.updateUserSchema)
-  ], (req, res) => userController.remove(req, res))
+  ], userController.remove)
+
+// get Books mark list
+router.get('/bookmark/:id', [
+  authReaderMiddleware,
+  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP])
+], userController.getBookMarkList)
+
+// get Rented Books list
+router.get('/rented-list/:id', [
+  authReaderMiddleware,
+  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP])
+], userController.getRentedBooksList)
 
 export default router

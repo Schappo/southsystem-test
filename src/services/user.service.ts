@@ -1,8 +1,10 @@
-import { IUser } from '@shared/interfaces'
+import { IBook, IUser } from '@shared/interfaces'
 import userModel from '@shared/models/user.model'
 import { UerRepository } from '@shared/repositories/user.repository'
 import { MongoId, NullAble } from '../@types'
 import bcrypt from 'bcrypt'
+import bookService from './book.service'
+import { ObjectId } from 'mongodb'
 
 const { BCRYPT_SALT } = process.env
 const userRepository = new UerRepository(userModel)
@@ -38,11 +40,37 @@ const remove = async (id: MongoId): Promise<boolean> => {
   return Boolean(deleted)
 }
 
+const getBookMarkList = async (id: MongoId) : Promise<IBook[]> => {
+  const user = await findById(id)
+  const result = []
+  for (const bookId of user.bookmarks) {
+    const book = await bookService.findById(new ObjectId(bookId))
+    if (book) {
+      result.push(book)
+    }
+  }
+  return result
+}
+
+const getRentedBooksList = async (id: MongoId): Promise<IBook[]> => {
+  const user = await findById(id)
+  const result = []
+  for (const bookId of user.rentedBooks) {
+    const book = await bookService.findById(new ObjectId(bookId))
+    if (book) {
+      result.push(book)
+    }
+  }
+  return result
+}
+
 export default {
   findById,
   findByEmail,
   findAll,
   update,
   create,
-  remove
+  remove,
+  getBookMarkList,
+  getRentedBooksList
 }

@@ -1,4 +1,5 @@
 import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'
+import { MongoId } from '../../@types'
 import { RoleEnum } from '../enums'
 import { IUser } from '../interfaces'
 
@@ -23,10 +24,13 @@ class UserModel implements IUser {
   age: number
 
   @prop({ required: false, default: [] })
-  bookmarks: string[] = []
+  bookmarks: MongoId[] = []
 
   @prop({ required: false, default: RoleEnum.READER, enum: RoleEnum, type: String })
   role = RoleEnum.READER
+
+  @prop({ required: false, default: [] })
+  rentedBooks: MongoId[]
 }
 
 export default getModelForClass(UserModel)

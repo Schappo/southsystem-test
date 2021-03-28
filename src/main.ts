@@ -24,7 +24,8 @@ const boostrap = async () => {
         password: 'admin',
         age: 0,
         bookmarks: [],
-        role: RoleEnum.ADMIN
+        role: RoleEnum.ADMIN,
+        rentedBooks: []
       })
     }
   }

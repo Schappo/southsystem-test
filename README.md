@@ -110,7 +110,7 @@ enum RoleEnum {
 | ------ | :----------: | :---: | :--: | :-------------------------: | :------: | :------------: |
 | get    | /populate-db |   -   |  -   | Popula dados iniciais no BD |    -     | RoleEnum.ADMIN |
 
-Caso já exista algum item deste salvo no banco de dados o seed não é realizado
+Caso já exista algum item deste salvo no banco de dados o seed não será realizado
 
 - seed
 

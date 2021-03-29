@@ -9,15 +9,13 @@
 yarn install
 ```
 
-- Adione um arquivo .env na raiz do projeto e coloque as informações do ambiente conforma o .env.eample
+- Adione um arquivo .env na raiz do projeto e coloque as informações do ambiente conforme o .env.eample
 
-> MongoDB: Se tiver o docker compose instalado rodar o comando abaixo. Mas antes certifique-se que a porta 27107, valor ofnorme arquivo .env (DB_PORT), esteja disponível.
+> MongoDB: Se tiver o dokcer / docker compose instalado rodar o comando abaixo
 >
 > ```
 > docker-compose up -d
 > ```
-
-- Tenha o MongoDB banco de dados rodando.
 
 - Rode o Projeto
 

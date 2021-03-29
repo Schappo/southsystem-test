@@ -5,6 +5,7 @@ import { MongoId, NullAble } from '../@types'
 import bcrypt from 'bcrypt'
 import bookService from './book.service'
 import { ObjectId } from 'mongodb'
+import { findAndRemoveArrayStringItem } from '@shared/helpers'
 
 const { BCRYPT_SALT } = process.env
 const userRepository = new UerRepository(userModel)
@@ -74,6 +75,20 @@ const rentBook = async (id: MongoId, bookId: MongoId): Promise<IUser> => {
   return await update(id, { rentedBooks })
 }
 
+const bookReturn = async (id: MongoId, bookId: MongoId): Promise<IUser> => {
+  const user = await findById(id)
+  const updatedUserRentedBooks: MongoId[] = findAndRemoveArrayStringItem(user.rentedBooks, bookId)
+  try {
+    const updatedUser = await update(id, { rentedBooks: updatedUserRentedBooks })
+
+    await bookService.update(bookId, { rented: false })
+
+    return updatedUser
+  } catch (error) {
+
+  }
+}
+
 export default {
   findById,
   findByEmail,
@@ -83,5 +98,6 @@ export default {
   remove,
   getBookMarkList,
   getRentedBooksList,
-  rentBook
+  rentBook,
+  bookReturn
 }

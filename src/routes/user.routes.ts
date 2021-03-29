@@ -40,20 +40,24 @@ router.route('/:id')
 
 // get Books mark list
 router.get('/bookmarks/:id', [
-  authReaderMiddleware,
-  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP])
+  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP]),
+  authReaderMiddleware
 ], userController.getBookMarkList)
 
 // get Rented Books list
 router.get('/rented-list/:id', [
-  authReaderMiddleware,
-  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP])
+  authMiddleware([RoleEnum.READER, RoleEnum.LIBRARY_OP]),
+  authReaderMiddleware
 ], userController.getRentedBooksList)
 
 // get Rented Books list
 router.put('/rent-book/:id', [
-  authReaderMiddleware,
   authMiddleware([RoleEnum.LIBRARY_OP])
 ], userController.rentBook)
+
+// return book user
+router.put('/return-book/:id', [
+  authMiddleware([RoleEnum.LIBRARY_OP])
+], userController.bookReturn)
 
 export default router

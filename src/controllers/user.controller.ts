@@ -3,6 +3,7 @@ import { ObjectId } from 'mongodb'
 import userService from '@services/user.service'
 import { IUser } from '@shared/interfaces'
 import queryString from 'query-string'
+import bookService from '../services/book.service'
 
 const findAll = async (req: Request, res: Response): Promise<Response> => {
   const [, query] = req.url.split('?')
@@ -100,10 +101,23 @@ const rentBook = async (req: Request, res: Response): Promise<Response> => {
   const { id } = req.params
   const { bookId } = req.body
   try {
+    const book = await bookService.findById(bookId)
+    if (book.rented) return res.status(400).json('This book is alread rented')
+
     const response = await userService.rentBook(new ObjectId(id), bookId)
     return res.status(200).json(response)
   } catch (error) {
-    console.error(error)
+    return res.status(500).send('Something got wrong!')
+  }
+}
+
+const bookReturn = async (req: Request, res: Response): Promise<Response> => {
+  const { id } = req.params
+  const { bookId } = req.body
+  try {
+    const response = await userService.bookReturn(new ObjectId(id), bookId)
+    return res.status(200).json(response)
+  } catch (error) {
     return res.status(500).send('Something got wrong!')
   }
 }
@@ -116,5 +130,6 @@ export default {
   remove,
   getBookMarkList,
   getRentedBooksList,
-  rentBook
+  rentBook,
+  bookReturn
 }

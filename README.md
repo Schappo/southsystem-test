@@ -93,7 +93,8 @@ enum RoleEnum {
 | put    |    /user/:id     |  id   |       IUser        |          Altera Usuário           |  IUser   | RoleEnum.LIBRARY_OP, RoleEnum.READER |
 | get    | /rented-list/:id |  id   |         -          |   Busca Livros Alugados Usuário   | IBook[]  | RoleEnum.LIBRARY_OP, RoleEnum.READER |
 | get    |  /bookmark/:id   |  id   |         -          | Busca livros favoritos do Usuário | IBook[]  | RoleEnum.LIBRARY_OP, RoleEnum.READER |
-| put    |  /rent-book/:id  |  id   | { bookId: MongoId} |          Aluga um livro           |  IUser   |         RoleEnum.LIBRARY_OP          |
+| put    |  /rent-book/:id  |  id   | { bookId: MongoId} |            Aluga livro            |  IUser   |         RoleEnum.LIBRARY_OP          |
+| put    | /return-book/:id |  id   | { bookId: MongoId} |           Devolve livro           |  IUser   |         RoleEnum.LIBRARY_OP          |
 
 - Livros
 

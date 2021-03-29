@@ -1,8 +1,8 @@
 import { MongoId } from '../../@types'
 import { RoleEnum } from '../enums'
+import { IMongoDocument } from './general.interface'
 
-export interface IUser {
-  _id?: MongoId
+export interface IUser extends IMongoDocument {
   name: string
   age: number
   phone: string
@@ -14,6 +14,6 @@ export interface IUser {
 }
 
 export interface IJwtUser {
-  _id: string
+  _id: MongoId
   role: RoleEnum
 }

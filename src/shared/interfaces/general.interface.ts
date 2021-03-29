@@ -1,4 +1,4 @@
-import { Types } from 'mongoose'
+import { MongoId } from '../../@types'
 import { RoleEnum } from '../enums'
 import { IUser } from './user.interface'
 
@@ -20,16 +20,12 @@ export interface IDatabaseConfig extends IConfigMapping {
   }
 }
 
-export interface IHashMap {
-  [key: string]: unknown
-}
-
 export interface IMongoDocument {
-  _id?: Types.ObjectId;
+  _id?: MongoId;
 }
 
 export interface IDecodedJWT {
-  _id: string
+  _id: MongoId
   role: RoleEnum
   iat: number
 }
